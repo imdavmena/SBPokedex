@@ -7,6 +7,7 @@ import React, {
   ReactNode,
 } from "react";
 
+
 import { AuthContextProps, User } from "@/model/auth";
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
@@ -32,7 +33,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useEffect(() => {}, []);
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, isAuthenticated }} >
+    <AuthContext.Provider value={{ user, login, logout, isAuthenticated }}>
       {children}
     </AuthContext.Provider>
   );

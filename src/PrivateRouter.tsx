@@ -1,13 +1,11 @@
-import React, { PropsWithChildren, ReactNode } from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
+import { useAuth } from "./provider/authProvider";
 
-interface AuthProviderProps
-  extends PropsWithChildren<{
-    children: ReactNode;
-  }> {}
+export const PrivateRoute = () => {
+  const { isAuthenticated } = useAuth();
 
-export const PrivateRoute: React.FC<AuthProviderProps> = ({ children }) => {
-  const { state } = useLocation();
-
-  return state?.logged ? children : <Navigate to="/login" />;
+  if (!isAuthenticated()) {
+    return <Navigate to="/login" />;
+  }
+  return <Outlet />;
 };
